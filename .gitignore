@@ -5,6 +5,7 @@ scripts/device/test_script/build
 scripts/device/test_script/dist/Backups
 scripts/device/test_script/dist/Logs
 scripts/device/test_script/test_backup_schedule_manager.spec
+scripts/device/test_script/test_exe_backup_schedule_manager.spec
 
 scripts/device/cisco_xe/Backups
 scripts/device/cisco_xe/Logs
