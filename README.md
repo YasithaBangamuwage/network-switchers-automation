@@ -1,4 +1,4 @@
-# network-switchers-automation
+# network-switches-automation
 
 ### Configure python environment
 Download python windows installer according to your machine specification.<br>
