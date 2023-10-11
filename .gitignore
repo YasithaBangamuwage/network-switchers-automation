@@ -1,0 +1,14 @@
+
+scripts/device/test_script/Backups
+scripts/device/test_script/Logs
+scripts/device/test_script/build
+scripts/device/test_script/dist/Backups
+scripts/device/test_script/dist/Logs
+scripts/device/test_script/test_backup_schedule_manager.spec
+
+scripts/device/cisco_xe/Backups
+scripts/device/cisco_xe/Logs
+scripts/device/cisco_xe/build
+scripts/device/cisco_xe/dist/Backups
+scripts/device/cisco_xe/dist/Logs
+scripts/device/cisco_xe/cisco_xe_backup_schedule_manager.spec
