@@ -68,8 +68,8 @@ def create_backup_file():
     time_now = datetime.datetime.now().replace(microsecond=0)
     if is_all_env_values_provided == False:
         logging.warning('Backup schedule task terminated due to incorrect device information.')
-        logging.warning('Please update correct device information in env file and stop the process via Task Manager.')
-        logging.warning('Run exe file to start the schedule service.')
+        logging.warning('Please update correct device information in env file and stop the process via Task Manager or windows service.')
+        logging.warning('After updated please start windows service again.')
     else:
         DEVICE = {
                     'ip': ip_address,
