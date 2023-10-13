@@ -1,0 +1,44 @@
+{
+    "huawei_switches": [
+       {
+            "tag_name": "switch_1",
+            "user_name": "admin",
+            "password": "admin",
+            "ip_address": "192.168.100.240",
+            "device_type": "huawei",
+            "secret": "huawei"
+       },
+       {
+            "tag_name": "switch_2",
+            "user_name": "admin",
+            "password": "admin",
+            "ip_address": "192.168.100.240",
+            "device_type": "huawei",
+            "secret": "huawei"
+     },
+     {
+            "tag_name": "switch_3",
+            "user_name": "admin",
+            "password": "admin",
+            "ip_address": "192.168.100.240",
+            "device_type": "huawei",
+            "secret": "huawei"
+     },
+     {
+            "tag_name": "switch_4",
+            "user_name": "admin",
+            "password": "admin",
+            "ip_address": "192.168.100.240",
+            "device_type": "huawei",
+            "secret": "huawei"
+     },
+     {
+            "tag_name": "switch_5",
+            "user_name": "admin",
+            "password": "admin",
+            "ip_address": "192.168.100.240",
+            "device_type": "huawei",
+            "secret": "huawei"
+     }
+  ]
+ }
