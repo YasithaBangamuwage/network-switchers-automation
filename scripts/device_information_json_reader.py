@@ -39,7 +39,7 @@ def load_cisco_switches():
             else:
                  return []
     except Exception: 
-                logging.exception("Error occurred while reading cisco device information json file.")
+                logger.exception("Error occurred while reading cisco device information json file.")
     finally:
             cisco_json_file.close()
 
@@ -97,13 +97,13 @@ def validate_cisco_xe_json_schema(directories):
     except SchemaError as e:
         logger.error("Error occurred while reading cisco_xe device information json file. Wrong json schema")
         logger.error("All cisco_xe device information reading ignored and please correct it and restart the service to proceed with cisco_xe devices.")
-        logging.exception("Error occurred while reading cisco_xe device information json file.")
+        logger.exception("Error occurred while reading cisco_xe device information json file.")
         return False
      
     except ValidationError as e:
         logger.error("Error occurred while reading cisco_xe device information json file. Wrong json schema")
         logger.error("All cisco_xe device information reading ignored and please correct it and restart the service to proceed with cisco_xe devices.")
-        logging.exception("Error occurred while reading cisco_xe device information json file.")
+        logger.exception("Error occurred while reading cisco_xe device information json file.")
         return False
     
 def validate_huawei_json_schema(directories):
@@ -128,11 +128,11 @@ def validate_huawei_json_schema(directories):
     except SchemaError as e:
         logger.error("Error occurred while reading huawei device information json file. Wrong json schema")
         logger.error("All huawei device information reading ignored and please correct it and restart the service to proceed with huawei devices.")
-        logging.exception("Error occurred while reading huawei device information json file.")
+        logger.exception("Error occurred while reading huawei device information json file.")
         return False
      
     except ValidationError as e:
         logger.error("Error occurred while reading huawei device information json file. Wrong json schema")
         logger.error("All huawei device information reading ignored and please correct it and restart the service to proceed with huawei devices.")
-        logging.exception("Error occurred while reading huawei device information json file.")
+        logger.exception("Error occurred while reading huawei device information json file.")
         return False

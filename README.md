@@ -55,7 +55,7 @@ Verify `.env` file device information.<br>
 Copy `scripts/device/cisco_xe/dist/nssm.exe` file into the `cisco_xe_backup_schedule_manager` directory.<br>
 Open PowerShell in `cisco_xe_backup_schedule_manager` directory and run below command.<br>
 ```
-nssm.exe install cisco_xe_backup_schedule_manager
+nssm.exe install network_switches_backup_schedule_manager
 ```
 Now NSSM will open up a GUI for you to configure the service. Mandatory to select at least the Path, Startup Directory and Service name. You can check other settings like Actions when the service stops, priority, automatic/manual startup, etc.<br>
 Go to windows services window and verify the service. Start if not started already.<br>

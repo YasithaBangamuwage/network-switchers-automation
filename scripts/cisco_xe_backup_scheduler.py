@@ -35,7 +35,7 @@ def create_cisco_xe_backup_file(switch_backup_folder_name, backup_file_name, bac
         logger.info('CISCO_XE Backup Scheduler created backup file successfully. %s', backup_file_name)
         backup_file.close()
     except Exception: 
-        logging.exception("CISCO_XE Backup Scheduler error occurred while backup file creation")
+        logger.exception("CISCO_XE Backup Scheduler error occurred while backup file creation")
     finally:
         backup_file.close()
 
@@ -69,11 +69,11 @@ def generate_cisco_xe_backups(cisco_switches):
             create_cisco_xe_backup_file(switch_backup_folder_name,backup_file_name, show_run_output)
 
         except NetMikoTimeoutException:
-            logging.exception("Device not reachable (Please contact system administrator)")
+            logger.exception("Device not reachable (Please contact system administrator)")
         except NetMikoAuthenticationException:
-            logging.exception('Authentication Failure (Please contact system administrator)')
+            logger.exception('Authentication Failure (Please contact system administrator)')
         except SSHException:
-            logging.exception('Make sure SSH is enabled (Please contact system administrator)')
+            logger.exception('Make sure SSH is enabled (Please contact system administrator)')
     
     next_backup_file_time_stamp = datetime.datetime.now() + timedelta(weeks = 4)
-    logging.info('CISCO_XE Backup Scheduler Next backup files will be created at: %s', next_backup_file_time_stamp.strftime("%Y_%m_%d-%I_%M_%S_%p"))
+    logger.info('CISCO_XE Backup Scheduler Next backup files will be created at: %s', next_backup_file_time_stamp.strftime("%Y_%m_%d-%I_%M_%S_%p"))
