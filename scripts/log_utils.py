@@ -35,3 +35,9 @@ def cisco_xe_backup_scheduler_log_handler():
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
     log_handler.setFormatter(formatter)
     return log_handler
+
+def huawei_backup_scheduler_log_handler():
+    log_handler = handlers.RotatingFileHandler(get_directory_path()  + '/Logs/huawei_backup_scheduler.log', maxBytes=200000, backupCount=5)
+    formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
+    log_handler.setFormatter(formatter)
+    return log_handler

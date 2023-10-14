@@ -7,7 +7,6 @@ import os
 import datetime
 from datetime import date, timedelta                    
 from log_utils import cisco_xe_backup_scheduler_log_handler
-from device_information_json_reader import  load_cisco_switches
 from file_utils import get_directory_path
 
 logger = logging.getLogger(__name__)
