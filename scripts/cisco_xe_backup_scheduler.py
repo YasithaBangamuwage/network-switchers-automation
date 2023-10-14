@@ -73,6 +73,3 @@ def generate_cisco_xe_backups(cisco_switches):
             logger.exception('Authentication Failure (Please contact system administrator)')
         except SSHException:
             logger.exception('Make sure SSH is enabled (Please contact system administrator)')
-    
-    next_backup_file_time_stamp = datetime.datetime.now() + timedelta(weeks = 4)
-    logger.info('CISCO_XE Backup Scheduler Next backup files will be created at: %s', next_backup_file_time_stamp.strftime("%Y_%m_%d-%I_%M_%S_%p"))

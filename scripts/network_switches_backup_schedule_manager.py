@@ -9,6 +9,7 @@ import os
 import datetime
 import schedule
 import time
+import functools
 from datetime import date, timedelta                    
 from file_utils import get_directory_path
 
@@ -24,6 +25,20 @@ def initialize_schedule_manager_logger():
     logger.setLevel(logging.INFO)
     logger.info("Network switches schedule manager started.")
 
+# This decorator can be applied to any job function to log the elapsed time of each job
+def print_elapsed_time(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start_timestamp = time.time()
+        logger.info('Network switches schedule manager: Running job - "%s"' , func.__name__)
+        result = func(*args, **kwargs)
+        logger.info('Network switches schedule manager: Job "%s" completed in %d seconds' , func.__name__, (time.time() - start_timestamp))
+        next_backup_file_time_stamp = datetime.datetime.now() + timedelta(weeks = 4)
+        logger.info('Backup Scheduler Next backup files "%s" will be created at: %s', func.__name__, next_backup_file_time_stamp.strftime("%Y_%m_%d-%I_%M_%S_%p"))
+        return result
+    return wrapper
+
+@print_elapsed_time
 def trigger_cisco_xe_backups():
     cisco_switches = load_cisco_switches()
     if len(cisco_switches) == 0:
@@ -33,6 +48,7 @@ def trigger_cisco_xe_backups():
         logger.info("Network switches schedule manager start to process %s cisco_xe devices. at: %s", len(cisco_switches), datetime.datetime.now().replace(microsecond=0))
         generate_cisco_xe_backups(cisco_switches)
 
+@print_elapsed_time
 def trigger_huawei_backups():
     huawei_switches = load_huawei_switches()
     if len(huawei_switches) == 0:
@@ -41,6 +57,7 @@ def trigger_huawei_backups():
     else:
         logger.info("Network switches schedule manager start to process %s huawei devices. at: %s", len(huawei_switches), datetime.datetime.now().replace(microsecond=0))
         generate_huawei_backups(huawei_switches)
+
 
 # initialize all logger files
 initialize_root_logger()
@@ -51,13 +68,16 @@ initialize_device_information_logger()
 # initialize cisco_xe backup task
 initialize_cisco_xe_backup_scheduler_logger()
 trigger_cisco_xe_backups()
-schedule.every(10).seconds.do(trigger_cisco_xe_backups)
+cisco_xe_backup_scheduler = schedule.Scheduler()
+cisco_xe_backup_scheduler.every(10).seconds.do(trigger_cisco_xe_backups)
 
 # initialize huawei backup task
 initialize_huawei_backup_scheduler_logger()
 trigger_huawei_backups()
-schedule.every(10).seconds.do(trigger_huawei_backups)
+huawei_backup_scheduler = schedule.Scheduler()
+huawei_backup_scheduler.every(10).seconds.do(trigger_huawei_backups)
 
 while True:
-    schedule.run_pending()
+    cisco_xe_backup_scheduler.run_pending()
+    huawei_backup_scheduler.run_pending()
     time.sleep(1)
