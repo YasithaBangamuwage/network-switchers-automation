@@ -15,26 +15,26 @@ def create_log_folder():
 
 def initialize_root_logger():
     create_log_folder()
-    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/server.log', maxBytes=20000, backupCount=5)
+    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/server.log', maxBytes=200000, backupCount=5)
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
     log_handler.setFormatter(formatter)
     logger.addHandler(log_handler)
     logger.setLevel(logging.INFO)
 
 def device_information_log_handler():
-    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/device_information_reader.log', maxBytes=20000, backupCount=5)
+    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/device_information_reader.log', maxBytes=200000, backupCount=5)
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
     log_handler.setFormatter(formatter)
     return log_handler
 
 def schedule_manager_log_handler():
-    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/schedule_manager.log', maxBytes=20000, backupCount=5)
+    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/schedule_manager.log', maxBytes=200000, backupCount=5)
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
     log_handler.setFormatter(formatter)
     return log_handler
 
-def initialize_cisco_xe_backup_scheduler_log_handler():
-    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/cisco_xe_backup_scheduler.log', maxBytes=20000, backupCount=5)
+def cisco_xe_backup_scheduler_log_handler():
+    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/cisco_xe_backup_scheduler.log', maxBytes=200000, backupCount=5)
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
     log_handler.setFormatter(formatter)
     return log_handler
