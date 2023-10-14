@@ -1,19 +1,10 @@
 import json
-import os
 import logging
-import logging.handlers as handlers
-import sys
-from datetime import date, timedelta
 from log_utils import device_information_log_handler
 from jsonschema import validate, ValidationError, SchemaError
+from file_utils import get_directory_path
 
-
-exe_file = sys.executable
-exe_parent = os.path.dirname(exe_file)
-#dir_path = os.path.dirname(exe_file)
-dir_path = os.path.dirname(os.path.realpath(__file__))
 logger = logging.getLogger(__name__)
-
 
 def initialize_device_information_logger():
     logger.addHandler(device_information_log_handler())
@@ -23,7 +14,7 @@ def initialize_device_information_logger():
 def load_cisco_switches():
     try:
         # Opening JSON file
-        cisco_json_file = open(dir_path +'/cisco_xe_switches.json',) 
+        cisco_json_file = open(get_directory_path() +'/cisco_xe_switches.json',) 
         # returns JSON object as a dictionary
         json_data = json.load(cisco_json_file)
         cisco_json_file.close()
@@ -55,7 +46,7 @@ def load_cisco_switches():
 def load_huawei_switches():
     try:
         # Opening JSON file
-        huawei_json_file = open(dir_path +'/huawei_switches.json',) 
+        huawei_json_file = open(get_directory_path()  +'/huawei_switches.json',) 
         # returns JSON object as a dictionary
         json_data = json.load(huawei_json_file)
         huawei_json_file.close()

@@ -1,23 +1,15 @@
-import logging.handlers as handlers
 from netmiko import ConnectHandler
 from netmiko import NetMikoTimeoutException
 from netmiko import NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 import logging
 import os
-import sys
 import datetime
-import schedule
-import time
 from datetime import date, timedelta                    
 from log_utils import cisco_xe_backup_scheduler_log_handler
 from device_information_json_reader import  load_cisco_switches
+from file_utils import get_directory_path
 
-
-exe_file = sys.executable
-exe_parent = os.path.dirname(exe_file)
-#dir_path = os.path.dirname(exe_file)
-dir_path = os.path.dirname(os.path.realpath(__file__))
 logger = logging.getLogger(__name__)
 
 def initialize_cisco_xe_backup_scheduler_logger():
@@ -26,18 +18,18 @@ def initialize_cisco_xe_backup_scheduler_logger():
     logger.info("CISCO_XE Backup Scheduler started.")
 
 def create_cisco_xe_main_backup_folder():
-    if not os.path.exists(dir_path+ "/Backups/cisco_xe"):
-        os.makedirs(dir_path+ "/Backups/cisco_xe")
+    if not os.path.exists(get_directory_path() + "/Backups/cisco_xe"):
+        os.makedirs(get_directory_path() + "/Backups/cisco_xe")
         logger.info("CISCO_XE Backup Scheduler created main backup folder.")
 
 def create_cisco_xe_backup_folder(switch_folder_name):
-    if not os.path.exists(dir_path+ "/Backups/cisco_xe/" + switch_folder_name):
-       os.makedirs(dir_path+ "/Backups/cisco_xe/" + switch_folder_name)
+    if not os.path.exists(get_directory_path() + "/Backups/cisco_xe/" + switch_folder_name):
+       os.makedirs(get_directory_path() + "/Backups/cisco_xe/" + switch_folder_name)
        logger.info("CISCO_XE Backup Scheduler created backup folder called : %s.", switch_folder_name)
 
 def create_cisco_xe_backup_file(switch_backup_folder_name, backup_file_name, backup_data):
     try:
-        filepath = os.path.join(dir_path + "/Backups/cisco_xe/" + switch_backup_folder_name, backup_file_name)
+        filepath = os.path.join(get_directory_path()  + "/Backups/cisco_xe/" + switch_backup_folder_name, backup_file_name)
         backup_file = open(filepath + '.txt', 'w')
         backup_file.write(backup_data)
         logger.info('CISCO_XE Backup Scheduler created backup file successfully. %s', backup_file_name)
