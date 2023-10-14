@@ -5,8 +5,8 @@ import sys
   
 exe_file = sys.executable
 exe_parent = os.path.dirname(exe_file)
-dir_path = os.path.dirname(exe_file)
-#dir_path = os.path.dirname(os.path.realpath(__file__))
+#dir_path = os.path.dirname(exe_file)
+dir_path = os.path.dirname(os.path.realpath(__file__))
 logger = logging.getLogger()
 
 def create_log_folder():
@@ -29,6 +29,12 @@ def device_information_log_handler():
 
 def schedule_manager_log_handler():
     log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/schedule_manager.log', maxBytes=20000, backupCount=5)
+    formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
+    log_handler.setFormatter(formatter)
+    return log_handler
+
+def initialize_cisco_xe_backup_scheduler_log_handler():
+    log_handler = handlers.RotatingFileHandler(dir_path+ '/Logs/cisco_xe_backup_scheduler.log', maxBytes=20000, backupCount=5)
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
     log_handler.setFormatter(formatter)
     return log_handler

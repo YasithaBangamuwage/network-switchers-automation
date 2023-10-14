@@ -1,5 +1,7 @@
 scripts/build
 scripts/dist
+scripts/Backups
+scripts/Logs
 scripts/network_swtiches_backup_schedule_manager.spec
 scripts/__pycache__
 testEnv/Backups

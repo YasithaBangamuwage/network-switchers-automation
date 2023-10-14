@@ -14,6 +14,7 @@ pip install schedule
 pip install netmiko
 pip install python-dotenv
 pip install pyinstaller
+pip install jsonschema
 ```
 
 ### Deploying CISCO_XE backup schedule manager
