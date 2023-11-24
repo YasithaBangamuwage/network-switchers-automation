@@ -3,4 +3,5 @@ scripts/dist
 scripts/Backups
 scripts/Logs
 scripts/network_swtiches_backup_schedule_manager.spec
+scripts/network_switches_backup_schedule_manager.spec
 scripts/__pycache__

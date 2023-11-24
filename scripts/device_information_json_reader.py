@@ -14,26 +14,26 @@ def initialize_device_information_logger():
 def load_cisco_switches():
     try:
         # Opening JSON file
-        cisco_json_file = open(get_directory_path() +'/cisco_xe_switches.json',) 
+        cisco_json_file = open(get_directory_path() +'/cisco_switches.json',) 
         # returns JSON object as a dictionary
         json_data = json.load(cisco_json_file)
         cisco_json_file.close()
         # maximum switches count to schedule
         max_count = 10
-        json_directories = json_data['cisco_xe_switches']
+        json_directories = json_data['cisco_switches']
         json_directory_count = len(json_directories)
 
         if json_directory_count > max_count:
             logger.warning("The maximum number(%s) of cisco devices that can be integrated to the schedule manager has been reached.", max_count)
             logger.info("Consider only %s cisco devices. Please contact system administrator to change the limit.", max_count)
-            is_valid = validate_cisco_xe_json_schema(json_directories)
+            is_valid = validate_cisco_json_schema(json_directories)
             if is_valid:
                  return json_directories[:max_count]
             else:
                  return []
         else:
             logger.info("Schedule manager detected  %s number of cisco devices.", json_directory_count)
-            is_valid = validate_cisco_xe_json_schema(json_directories)
+            is_valid = validate_cisco_json_schema(json_directories)
             if is_valid:
                  return json_directories
             else:
@@ -75,7 +75,7 @@ def load_huawei_switches():
     finally:
             huawei_json_file.close()
 
-def validate_cisco_xe_json_schema(directories):
+def validate_cisco_json_schema(directories):
     schema_validator = {
     "type"  :   "object",
     "properties"    :{
@@ -95,15 +95,15 @@ def validate_cisco_xe_json_schema(directories):
         return True
  
     except SchemaError as e:
-        logger.error("Error occurred while reading cisco_xe device information json file. Wrong json schema")
-        logger.error("All cisco_xe device information reading ignored and please correct it and restart the service to proceed with cisco_xe devices.")
-        logger.exception("Error occurred while reading cisco_xe device information json file.")
+        logger.error("Error occurred while reading cisco device information json file. Wrong json schema")
+        logger.error("All cisco device information reading ignored and please correct it and restart the service to proceed with cisco devices.")
+        logger.exception("Error occurred while reading cisco device information json file.")
         return False
      
     except ValidationError as e:
-        logger.error("Error occurred while reading cisco_xe device information json file. Wrong json schema")
-        logger.error("All cisco_xe device information reading ignored and please correct it and restart the service to proceed with cisco_xe devices.")
-        logger.exception("Error occurred while reading cisco_xe device information json file.")
+        logger.error("Error occurred while reading cisco device information json file. Wrong json schema")
+        logger.error("All cisco device information reading ignored and please correct it and restart the service to proceed with cisco devices.")
+        logger.exception("Error occurred while reading cisco device information json file.")
         return False
     
 def validate_huawei_json_schema(directories):

@@ -37,7 +37,7 @@ def initialize_logger():
     log_handler.setFormatter(formatter)
     logger.addHandler(log_handler)
     logger.setLevel(logging.INFO)
-    logger.info("CISCO_XE Backup Schedule Manager started.")
+    logger.info("CISCO Backup Schedule Manager started.")
     
 def load_env_variables():
     load_dotenv()

@@ -1,5 +1,5 @@
 {
-    "cisco_xe_switches": [
+    "cisco_switches": [
        {
             "tag_name": "switch_1",
             "user_name": "admin",
